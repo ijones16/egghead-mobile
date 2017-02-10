@@ -30,7 +30,7 @@ class Home extends Component {
   render() {
     return (
       <View>
-        <Text>heyyyyyy</Text>
+        <Lessons />
        </View>
     );
   }
