@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ListView, Platform } from "react-native";
-import LessonRow from "./LessonRow";
+import LessonRow from "../components/Row";
 import _Environment from "../../environment";
 import ApiUtils from "../apiUtils/ApiUtils";
 const headers = new Headers({

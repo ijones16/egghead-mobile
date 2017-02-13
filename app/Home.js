@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Lessons from "./lessons/Lessons"
+import Lessons from "./screens/Lessons"
 
 class Home extends Component {
   render() {

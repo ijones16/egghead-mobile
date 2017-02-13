@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 
-class LessonRow extends Component {
+export default class Row extends Component {
   render() {
     const {title} = this.props;
     return (
@@ -24,5 +24,3 @@ const styles = StyleSheet.create({
     color: "#4d4d4d"
   }
 })
-
-export default LessonRow;
