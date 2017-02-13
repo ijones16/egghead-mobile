@@ -4,9 +4,10 @@ import Lessons from "./screens/Lessons"
 
 class Home extends Component {
   render() {
+    console.log(this.props)
     return (
       <View>
-        <Lessons />
+        <Lessons navigation={this.props.navigation} />
        </View>
     );
   }

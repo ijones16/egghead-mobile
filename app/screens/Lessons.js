@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ListView, Platform } from "react-native";
-import LessonRow from "../components/Row";
+import Row from "../components/Row";
 import _Environment from "../../environment";
 import ApiUtils from "../apiUtils/ApiUtils";
 const headers = new Headers({
@@ -45,10 +45,13 @@ class Lessons extends Component {
       }) 
   }
 
+  navigateToScreen = (screen, props) => {
+    this.props.navigation.navigate(screen, {content: props})
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.header}>Lessons</Text>
         <View style={styles.content}>
           <ListView
             enableEmptySections
@@ -56,9 +59,10 @@ class Lessons extends Component {
             dataSource={this.state.dataSource}
             renderRow={({id, ...value}) => {
               return (
-                <LessonRow
+                <Row
                   key={id}
                   {...value}
+                  handlePress={this.navigateToScreen}
                 />
               )
             }}
@@ -75,13 +79,6 @@ class Lessons extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
-    ...Platform.select({
-      ios: { paddingTop: 30 }
-    })
-  },
-  header: {
-    fontSize: 24
   },
   content: {
     flex: 1

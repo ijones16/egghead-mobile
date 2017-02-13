@@ -1,13 +1,13 @@
-import React, { Component } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, {Component} from "react";
+import {View, Text, StyleSheet, TouchableOpacity} from "react-native";
 
 export default class Row extends Component {
   render() {
-    const {title} = this.props;
+    const {title, handlePress} = this.props;
     return (
-      <View style={styles.container}>
+      <TouchableOpacity style={styles.container} onPress={() => handlePress('LessonScreen', this.props)}>
         <Text style={styles.text}>{title}</Text>
-      </View>
+      </TouchableOpacity>
     );
   }
 }
