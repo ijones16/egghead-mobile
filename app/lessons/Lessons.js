@@ -1,6 +1,13 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, ListView, Platform } from "react-native";
 import LessonRow from "./LessonRow";
+import _Environment from "../../environment";
+import ApiUtils from "../apiUtils/ApiUtils";
+const headers = new Headers({
+  "Authorization": `Bearer ${_Environment.production.MOBILE_APP_EGGHEAD_JWT}`,
+  "Content-Type": "application/json"
+})
+
 
 class Lessons extends Component {
   constructor(props){
@@ -20,30 +27,28 @@ class Lessons extends Component {
     })
   }
 
-  componentDidMount(){
-    const items = [{
-          id: '1',
-          title: 'Lesson1'
-        },
-        {
-          id: '2',
-          title: 'Lesson2'
-        },
-        {
-          id: '3',
-          title: 'Lesson3'
-        },
-        {
-          id: '4',
-          title: 'Lesson4'
-    }]
+  loadLessons = () => {
+    return fetch(`${_Environment.production.MOBILE_APP_EGGHEAD_BASE_URL}/lessons?size=10&page=1`, {
+        headers
+    }).then(ApiUtils.checkStatus)
+  }
 
-    this.setSource(items, items)
+  componentDidMount(){
+
+    this.loadLessons()
+      .then((res) => {
+        res.json()
+        .then((lessons) => {
+          console.log(lessons)
+          this.setSource(lessons, lessons)
+        })
+      }) 
   }
 
   render() {
     return (
       <View style={styles.container}>
+        <Text style={styles.header}>Lessons</Text>
         <View style={styles.content}>
           <ListView
             enableEmptySections
@@ -56,6 +61,9 @@ class Lessons extends Component {
                   {...value}
                 />
               )
+            }}
+            renderSeparator={(sectionId, rowId) => {
+              return <View key={rowId} style={styles.separator}/>
             }}
           />
         </View>
@@ -71,6 +79,9 @@ const styles = StyleSheet.create({
     ...Platform.select({
       ios: { paddingTop: 30 }
     })
+  },
+  header: {
+    fontSize: 24
   },
   content: {
     flex: 1

@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   text: {
-    fontSize: 24,
+    fontSize: 16,
     color: "#4d4d4d"
   }
 })
