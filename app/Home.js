@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import Lessons from "./lessons/Lessons"
+import Lessons from "./screens/Lessons"
 
 class Home extends Component {
   render() {
+    console.log(this.props)
     return (
       <View>
-        <Lessons />
+        <Lessons navigation={this.props.navigation} />
        </View>
     );
   }

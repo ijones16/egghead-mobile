@@ -4,19 +4,30 @@
  * @flow
  */
 
-import React, { Component } from 'react';
-import { AppRegistry, StyleSheet, Text, View } from 'react-native';
+import React, {Component} from 'react';
+import {AppRegistry, StyleSheet, Text, View} from 'react-native';
+import {StackNavigator} from 'react-navigation';
 import Home from './app/Home';
+import LessonScreen from './app/screens/LessonScreen';
+import Lessons from './app/screens/Lessons';
 
-export default class egghead_mobile extends Component {
+export default class EggheadMobile extends Component {
+  static navigationOptions = {
+    title: 'Browse',
+  };
   render() {
     return (
       <View style={styles.container}>
-        <Home />
+        <Lessons navigation={this.props.navigation}/>
       </View>
     );
   }
 }
+
+const egghead_mobile = StackNavigator({
+  Home: {screen: EggheadMobile},
+  LessonScreen: {screen: LessonScreen}
+});
 
 const styles = StyleSheet.create({
   container: {
